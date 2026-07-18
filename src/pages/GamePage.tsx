@@ -1,3 +1,5 @@
+import FaceUpCards from "../components/game/FaceUpCards/FaceUpCards";
+import TrainHand from "../components/game/TrainHand/TrainHand";
 import Button from "../components/common/Button";
 import PageLayout from "../components/layout/PageLayout";
 
@@ -6,59 +8,42 @@ function GamePage() {
     <PageLayout>
       <div
         style={{
-          width: 360,
+          width: "100%",
+          maxWidth: 900,
           display: "flex",
           flexDirection: "column",
-          gap: 20,
+          gap: 32,
         }}
       >
-        <h1>🚂 Ticket Companion</h1>
+        <h1 style={{ color: "white", textAlign: "center" }}>
+          🚂 Ticket Companion
+        </h1>
 
-        <h2>Room</h2>
-        <p>DB7C67</p>
+        <section>
+          <h2 style={{ color: "white" }}>Face Up Cards</h2>
+          <FaceUpCards />
+        </section>
 
-        <hr />
-
-        <h2>Face Up Cards</h2>
-
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            fontSize: "2rem",
-          }}
-        >
-          <span>🟥</span>
-          <span>🟦</span>
-          <span>🟩</span>
-          <span>⬛</span>
-          <span>🚂</span>
-        </div>
-
-        <hr />
-
-        <h2>Your Hand</h2>
+        <section>
+          <h2 style={{ color: "white" }}>Your Hand</h2>
+          <TrainHand />
+        </section>
 
         <div
           style={{
             display: "flex",
-            flexWrap: "wrap",
-            gap: 10,
-            fontSize: "2rem",
+            gap: 16,
+            justifyContent: "center",
           }}
         >
-          <span>🟥</span>
-          <span>🟥</span>
-          <span>🟨</span>
-          <span>⬛</span>
-          <span>🚂</span>
+          <Button>
+            Draw Card
+          </Button>
+
+          <Button variant="secondary">
+            View Tickets
+          </Button>
         </div>
-
-        <Button>Draw Card</Button>
-
-        <Button variant="secondary">
-          View Tickets
-        </Button>
       </div>
     </PageLayout>
   );

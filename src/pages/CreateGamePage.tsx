@@ -50,8 +50,8 @@ function CreateGamePage() {
           onChange={(e) => setPlayerName(e.target.value)}
           placeholder="Enter your name"
           style={{
-            padding: "12px",
-            borderRadius: "8px",
+            padding: 12,
+            borderRadius: 8,
             border: "1px solid #475569",
             background: "#1e293b",
             color: "white",

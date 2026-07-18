@@ -1,0 +1,41 @@
+.train-card {
+  width: 90px;
+  height: 130px;
+  border-radius: 12px;
+  border: 2px solid #334155;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+
+  transition: transform .2s;
+}
+
+.train-card:hover {
+  transform: translateY(-4px);
+}
+
+.train-card--red { background:#dc2626; }
+.train-card--blue { background:#2563eb; }
+.train-card--green { background:#16a34a; }
+.train-card--yellow { background:#eab308; color:black; }
+.train-card--black { background:#111827; }
+.train-card--white { background:white; color:black; }
+.train-card--orange { background:#ea580c; }
+.train-card--pink { background:#ec4899; }
+
+.train-card--locomotive {
+  background: linear-gradient(
+    135deg,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    purple
+  );
+}
