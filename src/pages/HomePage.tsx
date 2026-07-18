@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../components/common/Button";
 
 function HomePage() {
+  const navigate = useNavigate();
+
   return (
     <main
       style={{
@@ -27,9 +30,14 @@ function HomePage() {
             marginTop: 40,
           }}
         >
-          <Button>Create Game</Button>
+          <Button onClick={() => navigate("/create")}>
+            Create Game
+          </Button>
 
-          <Button variant="secondary">
+          <Button
+            variant="secondary"
+            onClick={() => navigate("/join")}
+          >
             Join Game
           </Button>
         </div>
