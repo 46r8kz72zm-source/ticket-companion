@@ -1,11 +1,25 @@
 import { useState } from "react";
-import Button from "../components/common/Button";
 import { useNavigate } from "react-router-dom";
+import Button from "../components/common/Button";
 import { generateRoomCode } from "../utils/generateRoomCode";
 
 function CreateGamePage() {
   const [playerName, setPlayerName] = useState("");
   const navigate = useNavigate();
+
+  function handleCreateGame() {
+    if (!playerName.trim()) {
+      alert("Please enter your name.");
+      return;
+    }
+
+    navigate("/lobby", {
+      state: {
+        roomCode: generateRoomCode(),
+        playerName,
+      },
+    });
+  }
 
   return (
     <main
@@ -20,23 +34,24 @@ function CreateGamePage() {
     >
       <div
         style={{
-          width: 340,
+          width: 360,
           display: "flex",
           flexDirection: "column",
           gap: 20,
         }}
       >
-        <h1>Create Game</h1>
+        <h1 style={{ color: "white" }}>Create Game</h1>
 
         <label>Your Name</label>
 
         <input
+          type="text"
           value={playerName}
           onChange={(e) => setPlayerName(e.target.value)}
-          placeholder="Player"
+          placeholder="Enter your name"
           style={{
-            padding: 12,
-            borderRadius: 8,
+            padding: "12px",
+            borderRadius: "8px",
             border: "1px solid #475569",
             background: "#1e293b",
             color: "white",
@@ -44,23 +59,9 @@ function CreateGamePage() {
           }}
         />
 
-        <Button
-  onClick={() => {
-    if (!playerName.trim()) {
-      alert("Please enter your name.");
-      return;
-    }
-
-    navigate("/lobby", {
-      state: {
-        roomCode: generateRoomCode(),
-        playerName,
-      },
-    });
-  }}
->
-  Create Game
-</Button>
+        <Button onClick={handleCreateGame}>
+          Create Game
+        </Button>
       </div>
     </main>
   );
