@@ -1,9 +1,15 @@
+import { useState } from "react";
 import FaceUpCards from "../components/game/FaceUpCards/FaceUpCards";
 import TrainHand from "../components/game/TrainHand/TrainHand";
 import Button from "../components/common/Button";
 import PageLayout from "../components/layout/PageLayout";
 
+import { gameState } from "../data/GameState";
+import type { GameState } from "../types/GameState";
+
 function GamePage() {
+  const [game] = useState<GameState>(gameState);
+
   return (
     <PageLayout>
       <div
@@ -21,11 +27,13 @@ function GamePage() {
 
         <section>
           <h2 style={{ color: "white" }}>Face Up Cards</h2>
-          <FaceUpCards />
+
+          <FaceUpCards cards={game.faceUpCards} />
         </section>
 
         <section>
           <h2 style={{ color: "white" }}>Your Hand</h2>
+
           <TrainHand />
         </section>
 

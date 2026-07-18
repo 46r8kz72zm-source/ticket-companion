@@ -1,15 +1,16 @@
 import TrainCard from "../TrainCard/TrainCard";
 import "./TrainHand.css";
+import { gameState } from "../../../data/GameState";
 
 function TrainHand() {
   return (
     <div className="train-hand">
-      <TrainCard color="red" />
-      <TrainCard color="red" />
-      <TrainCard color="blue" />
-      <TrainCard color="green" />
-      <TrainCard color="black" />
-      <TrainCard color="locomotive" />
+      {gameState.hand.map((card) => (
+        <TrainCard
+          key={card.id}
+          color={card.color}
+        />
+      ))}
     </div>
   );
 }
