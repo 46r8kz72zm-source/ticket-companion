@@ -3,12 +3,18 @@ import FaceUpCards from "../components/game/FaceUpCards/FaceUpCards";
 import TrainHand from "../components/game/TrainHand/TrainHand";
 import Button from "../components/common/Button";
 import PageLayout from "../components/layout/PageLayout";
-
 import { gameState } from "../data/gameState";
 import type { GameState } from "../core/models/GameState";
+import { createDeck } from "../core/deck/createDeck";
 
 function GamePage() {
   const [game] = useState<GameState>(gameState);
+
+
+
+const deck = createDeck();
+
+console.log(deck.length);
 
   return (
     <PageLayout>
