@@ -6,10 +6,18 @@ import Button from "../components/common/Button";
 import PageLayout from "../components/layout/PageLayout";
 
 import type { GameState } from "../core/models/GameState";
+
 import { createGame } from "../core/game/createGame";
+import { drawBlindCard } from "../core/deck/drawBlindCard";
 
 function GamePage() {
-  const [game] = useState<GameState>(() => createGame("AB12CD"));
+  const [game, setGame] = useState<GameState>(() =>
+    createGame("AB12CD")
+  );
+
+  function handleDrawCard() {
+    setGame((currentGame) => drawBlindCard(currentGame));
+  }
 
   return (
     <PageLayout>
@@ -30,6 +38,15 @@ function GamePage() {
         >
           🚂 Ticket Companion
         </h1>
+
+        <p
+          style={{
+            color: "white",
+            textAlign: "center",
+          }}
+        >
+          Cards Remaining: {game.deck.length}
+        </p>
 
         <section>
           <h2 style={{ color: "white" }}>
@@ -54,8 +71,8 @@ function GamePage() {
             gap: 16,
           }}
         >
-          <Button>
-            Draw Card
+          <Button onClick={handleDrawCard}>
+            Draw Blind Card
           </Button>
 
           <Button variant="secondary">
