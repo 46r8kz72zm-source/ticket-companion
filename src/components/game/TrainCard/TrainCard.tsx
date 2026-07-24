@@ -11,11 +11,19 @@ type TrainCardProps = {
     | "orange"
     | "pink"
     | "locomotive";
+
+  onClick?: () => void;
 };
 
-function TrainCard({ color }: TrainCardProps) {
+function TrainCard({ color, onClick }: TrainCardProps) {
   return (
-    <div className={`train-card train-card--${color}`}>
+    <div
+      className={`train-card train-card--${color}`}
+      onClick={onClick}
+      style={{
+        cursor: onClick ? "pointer" : "default",
+      }}
+    >
       {color === "locomotive" ? "🚂" : color.toUpperCase()}
     </div>
   );

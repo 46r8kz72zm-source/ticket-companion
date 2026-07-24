@@ -11,8 +11,15 @@ export function createGame(roomCode: string): GameState {
 
   return {
     roomCode,
+
     deck,
+
     faceUpCards,
+
     hand: [],
+
+    cardsDrawnThisTurn: 0,
+
+    canDrawTrainCards: true,
   };
 }

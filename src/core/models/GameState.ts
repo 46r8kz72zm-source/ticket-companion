@@ -8,4 +8,8 @@ export interface GameState {
   faceUpCards: TrainCard[];
 
   hand: TrainCard[];
+
+  cardsDrawnThisTurn: number;
+
+  canDrawTrainCards: boolean;
 }

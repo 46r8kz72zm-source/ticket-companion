@@ -1,22 +1,29 @@
 import { useState } from "react";
 
+import PageLayout from "../components/layout/PageLayout";
 import FaceUpCards from "../components/game/FaceUpCards/FaceUpCards";
 import TrainHand from "../components/game/TrainHand/TrainHand";
 import Button from "../components/common/Button";
-import PageLayout from "../components/layout/PageLayout";
 
 import type { GameState } from "../core/models/GameState";
 
 import { createGame } from "../core/game/createGame";
 import { drawBlindCard } from "../core/deck/drawBlindCard";
+import { drawFaceUpCard } from "../core/deck/drawFaceUpCard";
 
 function GamePage() {
   const [game, setGame] = useState<GameState>(() =>
     createGame("AB12CD")
   );
 
-  function handleDrawCard() {
+  function handleDrawBlindCard() {
     setGame((currentGame) => drawBlindCard(currentGame));
+  }
+
+  function handleFaceUpCardClick(cardIndex: number) {
+    setGame((currentGame) =>
+      drawFaceUpCard(currentGame, cardIndex)
+    );
   }
 
   return (
@@ -39,21 +46,41 @@ function GamePage() {
           🚂 Ticket Companion
         </h1>
 
-        <p
+        <div
           style={{
             color: "white",
             textAlign: "center",
           }}
         >
-          Cards Remaining: {game.deck.length}
-        </p>
+          <p>
+            Cards Remaining: {game.deck.length}
+          </p>
+
+          <p>
+            Train Cards Drawn: {game.cardsDrawnThisTurn} / 2
+          </p>
+
+          {!game.canDrawTrainCards && (
+            <p
+              style={{
+                color: "#facc15",
+                fontWeight: "bold",
+              }}
+            >
+              Turn complete. Press End Turn.
+            </p>
+          )}
+        </div>
 
         <section>
           <h2 style={{ color: "white" }}>
             Face Up Cards
           </h2>
 
-          <FaceUpCards cards={game.faceUpCards} />
+          <FaceUpCards
+            cards={game.faceUpCards}
+            onCardClick={handleFaceUpCardClick}
+          />
         </section>
 
         <section>
@@ -71,7 +98,7 @@ function GamePage() {
             gap: 16,
           }}
         >
-          <Button onClick={handleDrawCard}>
+          <Button onClick={handleDrawBlindCard}>
             Draw Blind Card
           </Button>
 
