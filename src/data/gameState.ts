@@ -1,4 +1,4 @@
-import type { GameState } from "../types/GameState";
+import type { GameState } from "../core/models/GameState";
 
 export const gameState: GameState = {
   roomCode: "AB12CD",

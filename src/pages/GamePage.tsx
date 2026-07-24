@@ -4,8 +4,8 @@ import TrainHand from "../components/game/TrainHand/TrainHand";
 import Button from "../components/common/Button";
 import PageLayout from "../components/layout/PageLayout";
 
-import { gameState } from "../data/GameState";
-import type { GameState } from "../types/GameState";
+import { gameState } from "../data/gameState";
+import type { GameState } from "../core/models/GameState";
 
 function GamePage() {
   const [game] = useState<GameState>(gameState);
@@ -34,7 +34,7 @@ function GamePage() {
         <section>
           <h2 style={{ color: "white" }}>Your Hand</h2>
 
-          <TrainHand />
+         <TrainHand cards={game.hand} />
         </section>
 
         <div
