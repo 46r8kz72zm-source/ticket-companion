@@ -5,11 +5,14 @@ import FaceUpCards from "../components/game/FaceUpCards/FaceUpCards";
 import TrainHand from "../components/game/TrainHand/TrainHand";
 import Button from "../components/common/Button";
 
-import type { GameState } from "../core/models/GameState";
+import {
+  createGame,
+  drawBlindCard,
+  drawFaceUpCard,
+  endTurn,
+} from "../core";
 
-import { createGame } from "../core/game/createGame";
-import { drawBlindCard } from "../core/deck/drawBlindCard";
-import { drawFaceUpCard } from "../core/deck/drawFaceUpCard";
+import type { GameState } from "../core";
 
 function GamePage() {
   const [game, setGame] = useState<GameState>(() =>
@@ -24,6 +27,10 @@ function GamePage() {
     setGame((currentGame) =>
       drawFaceUpCard(currentGame, cardIndex)
     );
+  }
+
+  function handleEndTurn() {
+    setGame((currentGame) => endTurn(currentGame));
   }
 
   return (
@@ -67,7 +74,7 @@ function GamePage() {
                 fontWeight: "bold",
               }}
             >
-              Turn complete. Press End Turn.
+              Turn complete.
             </p>
           )}
         </div>
@@ -100,6 +107,10 @@ function GamePage() {
         >
           <Button onClick={handleDrawBlindCard}>
             Draw Blind Card
+          </Button>
+
+          <Button onClick={handleEndTurn}>
+            End Turn
           </Button>
 
           <Button variant="secondary">
