@@ -1,20 +1,15 @@
 import { useState } from "react";
+
 import FaceUpCards from "../components/game/FaceUpCards/FaceUpCards";
 import TrainHand from "../components/game/TrainHand/TrainHand";
 import Button from "../components/common/Button";
 import PageLayout from "../components/layout/PageLayout";
-import { gameState } from "../data/gameState";
+
 import type { GameState } from "../core/models/GameState";
-import { createDeck } from "../core/deck/createDeck";
+import { createGame } from "../core/game/createGame";
 
 function GamePage() {
-  const [game] = useState<GameState>(gameState);
-
-
-
-const deck = createDeck();
-
-console.log(deck.length);
+  const [game] = useState<GameState>(() => createGame("AB12CD"));
 
   return (
     <PageLayout>
@@ -27,27 +22,36 @@ console.log(deck.length);
           gap: 32,
         }}
       >
-        <h1 style={{ color: "white", textAlign: "center" }}>
+        <h1
+          style={{
+            color: "white",
+            textAlign: "center",
+          }}
+        >
           🚂 Ticket Companion
         </h1>
 
         <section>
-          <h2 style={{ color: "white" }}>Face Up Cards</h2>
+          <h2 style={{ color: "white" }}>
+            Face Up Cards
+          </h2>
 
           <FaceUpCards cards={game.faceUpCards} />
         </section>
 
         <section>
-          <h2 style={{ color: "white" }}>Your Hand</h2>
+          <h2 style={{ color: "white" }}>
+            Your Hand
+          </h2>
 
-         <TrainHand cards={game.hand} />
+          <TrainHand cards={game.hand} />
         </section>
 
         <div
           style={{
             display: "flex",
-            gap: 16,
             justifyContent: "center",
+            gap: 16,
           }}
         >
           <Button>
